@@ -5,7 +5,7 @@ pub struct Node<'a, T> {
   children: Vec<&'a Node<'a, T>>
 }
 
-impl<T: PartialEq + PartialOrd> Node<'_, T> {
+impl<'a, T: PartialEq + PartialOrd> Node<'a, T> {
   pub fn new(item: T) -> Self {
     Node {
       item,
@@ -18,7 +18,7 @@ impl<T: PartialEq + PartialOrd> Node<'_, T> {
     &self.item
   }
 
-  pub fn add_child<'a>(&mut self, node: &Node<T>){
+  pub fn add_child(&mut self, node: &'a Node<T>){
     if self.has_in_tree(node) {
       print!("Already has child in tree");
       return;
